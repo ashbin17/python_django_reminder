@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="{% url 'app:updating' rem.id %}" method="post">
+    {% csrf_token %}
+    <div align="center">
+            <h1>UPDATE REMINDER</h1>
+            <hr>
+        <input type="text" placeholder="Note"  value="{{ rem.note }}" name="note" required>
+        <input type="date" value="{{rem.date|date:"Y-m-d" }}" name="date" required>
+        <input type="submit" value="UPDATE">
+    </div>
+</form>
+
+</body>
+</html>

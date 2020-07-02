@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div align="center">
+    <h1>REMINDERS</h1>
+    <hr>
+    <table>
+        <tr>
+            <th>No</th>
+            <th></th>
+            <th>Reminder</th>
+            <th></th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+        <tr>
+                    {% for i in reminder %}
+            <td>{{ forloop.counter }}</td>
+            <td></td>
+            <td>{{ i.note }}</td>
+            <td></td>
+            <td>{{ i.date }}</td>
+                        <td></td>
+            <td><a href="{% url 'app:update' i.id %}"><input type="submit" value="UPDATE"></a></td>
+            <td><a href="{% url 'app:delete' i.id %}"><input type="submit" value="DELETE"></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<hr>
+<div align="center">
+     <form action="{% url 'app:add_reminder' %}" method="post">
+        {% csrf_token %}
+        <h1>ADD REMINDER</h1>
+        <hr>
+        <input type="text" placeholder="Note" required name="note">
+        <input type="date" required name="date" >
+        <input type="submit" value="Add Reminder">
+         </form>
+</div>
+</body>
+</html>
